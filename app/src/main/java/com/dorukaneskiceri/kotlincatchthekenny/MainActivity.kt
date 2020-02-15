@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         object : CountDownTimer(15000,1000) {
             override fun onFinish() {
-                stopImageMove()
+                finishGame()
                 timeText.text = "Timer: 0"
 
                 //Alert
@@ -87,7 +87,10 @@ class MainActivity : AppCompatActivity() {
         handler.post(runnable)
     }
 
-    fun stopImageMove(){
+    fun finishGame(){
         handler.removeCallbacks(runnable)
+        for(image in imageArray){
+            image.visibility = View.INVISIBLE
+        }
     }
 }
