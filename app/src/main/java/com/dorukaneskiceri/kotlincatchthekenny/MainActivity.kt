@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -16,6 +17,8 @@ class MainActivity : AppCompatActivity() {
 
     var score = 0
     val imageArray = ArrayList<ImageView>()
+    var runnable: Runnable = Runnable {  }
+    var handler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +35,6 @@ class MainActivity : AppCompatActivity() {
         imageArray.add(imageView8)
         imageArray.add(imageView9)
 
-        hideImages()
-
         //CountDown Timer
 
         object : CountDownTimer(15000,1000) {
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
                 //Alert
                 val alert = AlertDialog.Builder(this@MainActivity)
+                stopImageMove()
                 alert.setTitle("Game Over")
                 alert.setMessage("Do you want to play again ?")
                 alert.setNegativeButton("No") {dialog, which ->
@@ -60,6 +62,15 @@ class MainActivity : AppCompatActivity() {
                 timeText.text = "Timer: ${millisUntilFinished/1000}"
             }
         }.start()
+
+        //Runnable Usage
+        runnable = object: Runnable{
+            override fun run() {
+                hideImages()
+                handler.postDelayed(this,500)
+            }
+        }
+        handler.post(runnable)
     }
 
     fun increaseScore(view: View){
@@ -74,5 +85,9 @@ class MainActivity : AppCompatActivity() {
         val random = Random()
         val randomIndex = random.nextInt(9)
         imageArray[randomIndex].visibility = View.VISIBLE
+    }
+
+    fun stopImageMove(){
+        handler.removeCallbacks(runnable)
     }
 }
