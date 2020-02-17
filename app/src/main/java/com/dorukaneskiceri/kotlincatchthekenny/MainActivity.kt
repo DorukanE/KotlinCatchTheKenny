@@ -1,6 +1,7 @@
 package com.dorukaneskiceri.kotlincatchthekenny
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -16,13 +17,25 @@ import kotlin.collections.ArrayList
 class MainActivity : AppCompatActivity() {
 
     var score = 0
+    var highScore = 0
     val imageArray = ArrayList<ImageView>()
     var runnable: Runnable = Runnable {  }
     var handler = Handler()
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //Storing Score
+        sharedPreferences = this.getSharedPreferences("com.dorukaneskiceri.kotlincatchthekenny", Context.MODE_PRIVATE)
+        highScore = sharedPreferences.getInt("highScore",0)
+
+        if(highScore == 0){
+            highScoreText.text = "High Score: 0"
+        }else{
+            highScoreText.text = "High Score: $highScore"
+        }
 
         //ImageArray
         imageArray.add(imageView)
@@ -42,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         object : CountDownTimer(15000,1000) {
             override fun onFinish() {
                 finishGame()
-                timeText.text = "Timer: 0"
+                sharedPreferences.edit().putInt("highScore",highScore).apply()
 
                 //Alert
                 val alert = AlertDialog.Builder(this@MainActivity)
@@ -68,8 +81,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun increaseScore(view: View){
-        score++
-        scoreText.text = "Score: $score"
+        if(score >= highScore){
+            score++
+            highScore++
+            highScoreText.text = "High Score: $highScore"
+            scoreText.text = "Score: $score"
+        }else{
+            score++
+            highScoreText.text = "High Score: $highScore"
+            scoreText.text = "Score: $score"
+        }
     }
 
     fun hideImages(){
