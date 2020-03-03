@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity() {
 
                 //Alert
                 val alert = AlertDialog.Builder(this@MainActivity)
+                alert.setCancelable(false)
                 alert.setTitle("Game Over")
                 alert.setMessage("Do you want to play again ?")
                 alert.setNegativeButton("No") {dialog, which ->
@@ -102,7 +103,7 @@ class MainActivity : AppCompatActivity() {
                 val random = Random()
                 val randomIndex = random.nextInt(9)
                 imageArray[randomIndex].visibility = View.VISIBLE
-                handler.postDelayed(this,500)
+                handler.postDelayed(this,400)
             }
         }
         handler.post(runnable)

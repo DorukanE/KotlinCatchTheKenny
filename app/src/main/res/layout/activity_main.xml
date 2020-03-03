@@ -10,12 +10,14 @@
         android:id="@+id/timeText"
         android:layout_width="161dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="126dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="124dp"
         android:gravity="center"
         android:text="Timer: 15"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -26,6 +28,7 @@
         android:gravity="center"
         android:text="Score: 0"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/highScoreText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timeText" />
 
@@ -38,6 +41,7 @@
         android:text="High Score: 0"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/scoreText"
         app:layout_constraintTop_toBottomOf="@+id/timeText" />
 
     <GridLayout
