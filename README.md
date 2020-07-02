@@ -1,8 +1,8 @@
 # Kotlin-Catch-The-Kenny
-## Akıllı telefonlar için yapılmış basit bir oyun
-### Proje amacı; Kotlin diline giriş uygulaması olarak öğrenilen bilgileri pekiştirmektir. Bu amaca yönelik basit bir oyun yapılmıştır. Oyundaki amaç, hareket eden karaktere verilen süre içerisinde olabildiğince tıklayarak maksimum skoru elde etmektir.
-#### Yapılan oyunda Android Studio ve Kotlin programlama dili kullanılmıştır.
-##### Projenin ekran görüntüleri:
+## A simple game made for Android Smartphones
+### The goal of the project is to reinforce the information learned as an introduction to the language of Kotlin. A simple game was made for this purpose. The aim of the game is to achieve the maximum score by clicking on the moving character as much as possible within the given time.
+#### *This project made with Kotlin programming language in Android Studio.*
+##### Screenshots of the project:
 ![ScreenShot1](https://github.com/DorukanE/KotlinCatchTheKenny/blob/master/images/ScreenShot2.png)
 ![ScreenShot2](https://github.com/DorukanE/KotlinCatchTheKenny/blob/master/images/ScreenShot1.png)
 ![ScreenShot3](https://github.com/DorukanE/KotlinCatchTheKenny/blob/master/images/ScreenShot4.png)
